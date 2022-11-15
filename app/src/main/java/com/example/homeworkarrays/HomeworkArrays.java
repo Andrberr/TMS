@@ -5,7 +5,15 @@ import java.util.Scanner;
 
 public class HomeworkArrays {
     public static void main(String[] args) {
+        nameArray();
         twoArrays();
+    }
+
+    public static void nameArray() {
+        String[] array = {"Dana", "Andrey", "Nikita", "Dima", "Vlad", "Dasha"};
+        System.out.println("Unsorted array: " + Arrays.toString(array));
+        Arrays.sort(array);
+        System.out.println("Sorted array: " + Arrays.toString(array));
     }
 
     public static void twoArrays() {
