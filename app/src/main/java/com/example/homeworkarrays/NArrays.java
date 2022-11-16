@@ -1,12 +1,12 @@
 package com.example.homeworkarrays;
 
 import java.util.Arrays;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class NArrays {
     static Scanner in = new Scanner(System.in);
-    static int iPoint=0, jPoint=0;
+    static int iPoint = 0, jPoint = 0;
+
     public static void main(String[] args) {
         crossZero();
     }
@@ -73,7 +73,7 @@ public class NArrays {
         String input;
         do {
             input = in.next();
-            if (!input.equals("1") && !input.equals("2")){
+            if (!input.equals("1") && !input.equals("2")) {
                 System.out.println("Некорректный ввод. Повторите попытку:");
             } else check = true;
 
@@ -82,13 +82,13 @@ public class NArrays {
         return Integer.parseInt(input);
     }
 
-    public static void correctIndex(int[][] field){
+    public static void correctIndex(int[][] field) {
         boolean correct = false;
         String inputI, inputJ;
         do {
             inputI = in.next();
             inputJ = in.next();
-            for (int i=0; i<field.length; i++){
+            for (int i = 0; i < field.length; i++) {
                 if (inputI.equals(Integer.toString(i))) {
                     correct = true;
                     iPoint = i;
@@ -97,9 +97,9 @@ public class NArrays {
             }
 
             if (!correct) System.out.println("Некорректный ввод. Повторите попытку: ");
-            else{
+            else {
                 correct = false;
-                for (int j=0; j<field[0].length; j++){
+                for (int j = 0; j < field[0].length; j++) {
                     if (inputJ.equals(Integer.toString(j))) {
                         correct = true;
                         jPoint = j;
@@ -112,9 +112,9 @@ public class NArrays {
         } while (!correct);
     }
 
-    public static boolean choosePoint(int[][] field, int player){
+    public static boolean choosePoint(int[][] field, int player) {
         int symbol;
-        System.out.println("Введите 1 для крестка, 2 для нолика: ");
+        System.out.println("Введите 1 для крестика, 2 для нолика: ");
         symbol = correctSymbol();
         if (symbol == 1) field[iPoint][jPoint] = 1;
         else field[iPoint][jPoint] = 2;
@@ -145,14 +145,14 @@ public class NArrays {
 
 
             if (field[iPoint][jPoint] == 0) {
-             process = choosePoint(field,player);
+                process = choosePoint(field, player);
             } else {
                 do {
                     System.out.println("Эта клетка уже занята.");
                     System.out.print("Введите координаты клетки, куда поставить крестик или нолик: ");
                     correctIndex(field);
                 } while (field[iPoint][jPoint] != 0);
-                process = choosePoint(field,player);
+                process = choosePoint(field, player);
             }
             if (player == 1) player = 2;
             else player = 1;
