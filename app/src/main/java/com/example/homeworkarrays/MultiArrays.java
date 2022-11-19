@@ -5,8 +5,9 @@ import java.util.Scanner;
 
 public class MultiArrays {
     public static void main(String[] args) {
-        task1();
-        task2();
+        // task1();
+        //task2();
+        task3();
     }
 
     public static void task1() {
@@ -83,5 +84,37 @@ public class MultiArrays {
         }
         System.out.println("Массив чисел: " + Arrays.deepToString(numArray));
         System.out.println("Массив строк: " + Arrays.deepToString(stringArray));
+    }
+
+    public static void task3() {
+        Scanner in = new Scanner(System.in);
+        System.out.println("Введите размеры двумерного массива:");
+        int stringSize = in.nextInt();
+        int columnSize = in.nextInt();
+        int[][] twoMerArray = new int[stringSize][columnSize];
+        for (int i = 0; i < twoMerArray.length; i++) {
+            for (int j = 0; j < twoMerArray[i].length; j++) {
+                twoMerArray[i][j] = (int) (1 + Math.random() * 10);
+            }
+        }
+        System.out.println("Двумерный массив: " + Arrays.deepToString(twoMerArray));
+
+        System.out.println("Введите число:");
+        int number = in.nextInt();
+        boolean findNumber = false;
+        for (int[] array : twoMerArray) {
+            for (int elem : array) {
+                if (elem % number != 0) {
+                    System.out.print(elem + " ");
+                } else {
+                    findNumber = true;
+                    break;
+                }
+            }
+            if (findNumber) break;
+        }
+        System.out.println();
+        if (findNumber) System.out.println("Искомый элемент найден");
+        else System.out.println("Искомый элемент не найден.");
     }
 }
