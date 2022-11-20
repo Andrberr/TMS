@@ -102,16 +102,18 @@ public class MultiArrays {
         System.out.println("Введите число:");
         int number = in.nextInt();
         boolean findNumber = false;
-        for (int[] array : twoMerArray) {
-            for (int elem : array) {
-                if (elem % number != 0) {
-                    System.out.print(elem + " ");
-                } else {
-                    findNumber = true;
-                    break;
+        search:
+        {
+            for (int[] array : twoMerArray) {
+                for (int elem : array) {
+                    if (elem % number != 0) {
+                        System.out.print(elem + " ");
+                    } else {
+                        findNumber = true;
+                        break search;
+                    }
                 }
             }
-            if (findNumber) break;
         }
         System.out.println();
         if (findNumber) System.out.println("Искомый элемент найден");
