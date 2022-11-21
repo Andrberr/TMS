@@ -54,6 +54,7 @@ public class CreditCard {
         System.out.print("Input amount of Money to remove from the third Card: ");
         thirdCard.removeMoney(in.nextInt());
         System.out.println();
+        System.out.println("Cards Information:");
         firCard.cardStatus();
         secCard.cardStatus();
         thirdCard.cardStatus();
