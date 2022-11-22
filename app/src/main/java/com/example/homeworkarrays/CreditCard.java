@@ -24,7 +24,8 @@ public class CreditCard {
     }
 
     public void removeMoney(int moneyToRemove) {
-        this.accountMoney -= moneyToRemove;
+        if (this.getAccountMoney() - moneyToRemove >= 0) this.accountMoney -= moneyToRemove;
+        else System.out.println("Not enough Money on your Card.");
     }
 
     public void cardStatus() {
