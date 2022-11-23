@@ -1,11 +1,13 @@
 package com.example.homeworkarrays;
 
 public class Car {
-    String model;
-    public Car(String model){
-      this.model = model;
+    String marka;
+    public Car(String marka){
+        this.marka = marka;
     }
-    public String getModel(){
-        return this.model;
+
+    public void print(){
+        System.out.println("Я машина " + this.marka);
     }
+
 }
