@@ -12,19 +12,19 @@ public class Phone {
     }
 
     public void insertNewSim(SimCard newSim) {
-        sim = newSim;
+        this.sim = newSim;
         System.out.println("Новая симка телефона: Номер = " + newSim.getNumber() + ", Оператор = " + newSim.getOperatorName() + ", Баланс = " + newSim.getBalance());
     }
 
     public void makeCall(String simNum) {
-        sim.makeCall(simNum);
+        getSim().makeCall(simNum);
     }
 
     public void receiveCall(String simNum) {
-        sim.receiveCall(simNum);
+        getSim().receiveCall(simNum);
     }
 
     public void printBalance() {
-        System.out.println("Баланс = " + sim.getBalance());
+        System.out.println("Баланс = " + this.getSim().getBalance());
     }
 }

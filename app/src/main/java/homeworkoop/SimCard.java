@@ -33,4 +33,8 @@ public class SimCard {
     public void receiveCall(String simNum) {
         System.out.println("Принимаю звонок с номера " + this.getNumber() + ".");
     }
+
+    public void printInfo() {
+        System.out.println("Номер = " + this.getNumber() + ", Оператор = " + this.getOperatorName() + ", Баланс = " + this.getBalance());
+    }
 }

@@ -12,30 +12,16 @@ public final class LifeSimCard extends SimCard {
 
     @Override
     public void makeCall(String simNum) {
-        if (simNum.startsWith("44")) {
-            System.out.println("Звоню на номер " + simNum);
-            if (this.getBalance() < 1) System.out.print("На балансе недостаточно средств. ");
-            else {
-                this.setBalance(this.getBalance() - 1);
-            }
-        } else if (simNum.startsWith("29") || simNum.startsWith("33")) {
-            System.out.println("Звоню на номер " + simNum);
-            if (this.getBalance() < 3) System.out.print("На балансе недостаточно средств. ");
-            else {
-                this.setBalance(this.getBalance() - 3);
-            }
-        } else System.out.println("Неверная симкарта.");
+        System.out.println("Звоню на номер " + simNum);
+        int money = (simNum.startsWith("44")) ? 1 : 3;
+        if (this.getBalance() < money) System.out.print("На балансе недостаточно средств. ");
+        else this.setBalance(this.getBalance() - money);
     }
 
     @Override
     public void receiveCall(String simNum) {
-        if (simNum.startsWith("29") || simNum.startsWith("33")) {
-            System.out.println("Принимаю звонок с номера " + simNum);
-            if (this.getBalance() < 1) System.out.print("На балансе недостаточно средств. ");
-            else {
-                this.setBalance(this.getBalance() - 1);
-            }
-        } else if (!(simNum.startsWith("44"))) System.out.println("Неверная симкарта.");
-        else System.out.println("Принимаю звонок с номера " + simNum);
+        System.out.println("Принимаю звонок с номера " + simNum);
+        int money = (simNum.startsWith("44")) ? 0 : 1;
+        this.setBalance(this.getBalance() - money);
     }
 }
