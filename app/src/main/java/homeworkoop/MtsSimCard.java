@@ -1,8 +1,8 @@
 package homeworkoop;
 
 public final class MtsSimCard extends SimCard {
-    public MtsSimCard(int balance, int number) {
-        super(balance, "29" + number);
+    public MtsSimCard(int balance, int number, int pinCode) {
+        super(balance, "29" + number, pinCode);
     }
 
     @Override

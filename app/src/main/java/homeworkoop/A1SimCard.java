@@ -1,8 +1,8 @@
 package homeworkoop;
 
 public final class A1SimCard extends SimCard {
-    public A1SimCard(int balance, int number) {
-        super(balance, "33" + number);
+    public A1SimCard(int balance, int number, int pinCode) {
+        super(balance, "33" + number, pinCode);
     }
 
     @Override

@@ -1,8 +1,8 @@
 package homeworkoop;
 
 public final class LifeSimCard extends SimCard {
-    public LifeSimCard(int balance, int number) {
-        super(balance, "44" + number);
+    public LifeSimCard(int balance, int number, int pinCode) {
+        super(balance, "44" + number, pinCode);
     }
 
     @Override

@@ -2,18 +2,26 @@ package homeworkoop;
 
 public class Phone {
     private SimCard sim;
+    public boolean phoneStatus;
 
     public Phone(SimCard sim) {
         this.sim = sim;
+        this.phoneStatus = false;
     }
 
     public SimCard getSim() {
         return sim;
     }
 
+    public boolean isPhoneStatus() {
+        return phoneStatus;
+    }
+
     public void insertNewSim(SimCard newSim) {
         this.sim = newSim;
-        System.out.println("Новая симка телефона: Номер = " + newSim.getNumber() + ", Оператор = " + newSim.getOperatorName() + ", Баланс = " + newSim.getBalance());
+        this.getSim().checkPinCode();
+        if (!this.getSim().isSimIsBlocked())
+            System.out.println("Новая симка телефона: Номер = " + newSim.getNumber() + ", Оператор = " + newSim.getOperatorName() + ", Баланс = " + newSim.getBalance());
     }
 
     public void makeCall(String simNum) {
@@ -26,5 +34,13 @@ public class Phone {
 
     public void printBalance() {
         System.out.println("Баланс = " + this.getSim().getBalance());
+    }
+
+    public void turnOn() {
+        this.phoneStatus = true;
+    }
+
+    public void turnOff() {
+        this.phoneStatus = false;
     }
 }
