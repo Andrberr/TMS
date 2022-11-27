@@ -38,9 +38,11 @@ public class Phone {
 
     public void turnOn() {
         this.phoneStatus = true;
+        System.out.println("Телефон включён.");
     }
 
     public void turnOff() {
         this.phoneStatus = false;
+        System.out.println("Телефон выключен.");
     }
 }

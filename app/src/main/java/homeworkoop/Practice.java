@@ -89,7 +89,10 @@ public class Practice {
             field = in.nextLine();
             switch (field) {
                 case "1": {
-                    if (!phone.isPhoneStatus()) phone.turnOn();
+                    if (!phone.isPhoneStatus()) {
+                        phone.turnOn();
+                        if (phone.getSim() != null) phone.getSim().checkPinCode();
+                    }
                     else System.out.println("Телефон уже включён.");
                     break;
                 }
@@ -103,10 +106,12 @@ public class Practice {
                     String number = in.nextLine();
                     boolean simFind = false;
                     for (SimCard sim : simCards) {
-                        if (sim.getNumber().equals(number)) {
-                            phone.insertNewSim(sim);
-                            simFind = true;
-                            break;
+                        if (!sim.equals(phone.getSim())) {
+                            if (sim.getNumber().equals(number)) {
+                                phone.insertNewSim(sim);
+                                simFind = true;
+                                break;
+                            }
                         }
                     }
                     if (!simFind) System.out.println("Нет симки с таким номером.");
