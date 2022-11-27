@@ -1,19 +1,19 @@
-package homeworkoop;
+package com.example.homeworkarrays.homeworkoop;
 
-public final class MtsSimCard extends SimCard {
-    public MtsSimCard(int balance, int number, int pinCode) {
-        super(balance, "29" + number, pinCode);
+public final class LifeSimCard extends SimCard {
+    public LifeSimCard(int balance, int number, int pinCode) {
+        super(balance, "44" + number, pinCode);
     }
 
     @Override
     public String getOperatorName() {
-        return "MTS";
+        return "Life";
     }
 
     @Override
     public void makeCall(String simNum) {
         System.out.println("Звоню на номер " + simNum);
-        int money = (simNum.startsWith("29")) ? 1 : 3;
+        int money = (simNum.startsWith("44")) ? 1 : 3;
         if (this.getBalance() < money) System.out.print("На балансе недостаточно средств. ");
         else this.setBalance(this.getBalance() - money);
     }
@@ -21,7 +21,7 @@ public final class MtsSimCard extends SimCard {
     @Override
     public void receiveCall(String simNum) {
         System.out.println("Принимаю звонок с номера " + simNum);
-        int money = (simNum.startsWith("29")) ? 0 : 1;
+        int money = (simNum.startsWith("44")) ? 0 : 1;
         this.setBalance(this.getBalance() - money);
     }
 }

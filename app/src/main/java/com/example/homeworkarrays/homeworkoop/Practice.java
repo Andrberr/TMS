@@ -1,4 +1,4 @@
-package homeworkoop;
+package com.example.homeworkarrays.homeworkoop;
 
 import java.util.Scanner;
 
