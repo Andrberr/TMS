@@ -1,10 +1,12 @@
 package com.example.homeworkarrays.lesson9.practice;
 
+import java.util.Scanner;
+
 public class Except {
 
-    public static boolean check(String str){
+    public static boolean check(String str) {
         boolean correct = true;
-        if (str.length() >=20) correct = false;
+        if (str.length() >= 20) correct = false;
         if (correct) {
             for (int i = 0; i < str.length(); i++) {
                 char code = str.charAt(i);
@@ -18,17 +20,25 @@ public class Except {
     }
 
     public static void test(String login, String password, String confirmPassword) throws WrongLoginException, WrongPasswordException {
-       if (!check(login)) throw new WrongLoginException("Wrong login");
-       if (!check(password) || !password.equals(confirmPassword)) throw new WrongPasswordException("Wrong password.");
+        if (!check(login)) throw new WrongLoginException("Wrong login");
+        if (!check(password) || !password.equals(confirmPassword))
+            throw new WrongPasswordException("Wrong Password");
     }
 
     public static void main(String[] args) {
-          try{
-              test("lll12;", "111_ll", "111_ll");
-          }catch(WrongLoginException e1){
-              System.out.println("Login Exception");
-          } catch (WrongPasswordException e) {
-              System.out.println("Password Exception");
-          }
+        Scanner in = new Scanner(System.in);
+        try {
+            System.out.print("Введите Логин: ");
+            String login = in.nextLine();
+            System.out.print("Введите Пароль: ");
+            String password = in.nextLine();
+            System.out.print("Введите повторно Пароль: ");
+            String confirmPassword = in.nextLine();
+            test(login, password, confirmPassword);
+        } catch (WrongLoginException e1) {
+            System.out.println("Некорректный ввод логина.");
+        } catch (WrongPasswordException e2) {
+            System.out.println("Некорректный ввод пароля.");
+        }
     }
 }
