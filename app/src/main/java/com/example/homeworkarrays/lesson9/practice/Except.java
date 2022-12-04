@@ -26,22 +26,22 @@ public class Except {
             throw new WrongPasswordException("Wrong Password");
     }
 
-    public static void registration() throws WrongLoginException, WrongPasswordException {
+    public static void registration() {
         Scanner in = new Scanner(System.in);
-        System.out.print("Введите Логин: ");
-        String login = in.nextLine();
-        System.out.print("Введите Пароль: ");
-        String password = in.nextLine();
-        System.out.print("Введите повторно Пароль: ");
-        String confirmPassword = in.nextLine();
-        checkLoginPassword(login, password, confirmPassword);
-    }
-
-    public static void main(String[] args) {
         try {
-            registration();
+            System.out.print("Введите Логин: ");
+            String login = in.nextLine();
+            System.out.print("Введите Пароль: ");
+            String password = in.nextLine();
+            System.out.print("Введите повторно Пароль: ");
+            String confirmPassword = in.nextLine();
+            checkLoginPassword(login, password, confirmPassword);
         } catch (WrongLoginException | WrongPasswordException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) {
+        registration();
     }
 }
