@@ -3,7 +3,7 @@ package com.example.homeworkarrays.lesson9.practice;
 import java.util.Scanner;
 
 public class Except {
-    static final int UP_CASE_BEGIN = 65, UP_CASE_END = 90, LOW_CASE_BEGIN = 97, LOW_CASE_END = 122, NUM_BEGIN = 48, NUM_END = 57, UNDER_LINE = 95;
+    private static final int UP_CASE_BEGIN = 65, UP_CASE_END = 90, LOW_CASE_BEGIN = 97, LOW_CASE_END = 122, NUM_BEGIN = 48, NUM_END = 57, UNDER_LINE = 95;
 
     public static boolean checkForCorrect(String str) {
         boolean correct = true;
@@ -20,22 +20,27 @@ public class Except {
         return correct;
     }
 
-    public static void checkInput(String login, String password, String confirmPassword) throws WrongLoginException, WrongPasswordException {
+    public static void checkLoginPassword(String login, String password, String confirmPassword) throws WrongLoginException, WrongPasswordException {
         if (!checkForCorrect(login)) throw new WrongLoginException("Wrong login");
         if (!checkForCorrect(password) || !password.equals(confirmPassword))
             throw new WrongPasswordException("Wrong Password");
     }
 
-    public static void main(String[] args) {
+    public static void registration() throws WrongLoginException, WrongPasswordException {
         Scanner in = new Scanner(System.in);
+        System.out.print("Введите Логин: ");
+        String login = in.nextLine();
+        System.out.print("Введите Пароль: ");
+        String password = in.nextLine();
+        System.out.print("Введите повторно Пароль: ");
+        String confirmPassword = in.nextLine();
+        checkLoginPassword(login, password, confirmPassword);
+    }
+
+
+    public static void main(String[] args) {
         try {
-            System.out.print("Введите Логин: ");
-            String login = in.nextLine();
-            System.out.print("Введите Пароль: ");
-            String password = in.nextLine();
-            System.out.print("Введите повторно Пароль: ");
-            String confirmPassword = in.nextLine();
-            checkInput(login, password, confirmPassword);
+            registration();
         } catch (WrongLoginException | WrongPasswordException e) {
             e.printStackTrace();
         }
