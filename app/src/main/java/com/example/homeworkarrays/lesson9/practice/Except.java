@@ -37,7 +37,6 @@ public class Except {
         checkLoginPassword(login, password, confirmPassword);
     }
 
-
     public static void main(String[] args) {
         try {
             registration();
