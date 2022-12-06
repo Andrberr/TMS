@@ -13,15 +13,6 @@ public class InputDocument {
             if (Document.checkDocumentInput(documentNum)) correctInput = true;
             else System.out.println("Incorrect format of document number. Try again:");
         } while (!correctInput);
-
-        Document.printTwoBlocksNumbers(documentNum);
-        Document.printDocumentNumReplaced(documentNum);
-        Document.printDocumentLetters(documentNum);
-        if (Document.checkForLetterSequence(documentNum))
-            System.out.println("Номер документа содержит последовательность abc");
-        else System.out.println("Номер документа не содержит последовательность abc");
-        if (Document.checkEndsWithSequence(documentNum))
-            System.out.println("Номер документа заканчивается последовательностью 1a2b");
-        else System.out.println("Номер документа не заканчивается последовательностью 1a2b");
+        Document.operateWithDocumentNum(documentNum);
     }
 }
