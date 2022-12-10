@@ -28,7 +28,7 @@ public class User {
         else {
             System.out.println("Список сообщений: ");
             while (!this.getMessages().isEmpty()) {
-                System.out.println(this.messages.pollLast());
+                System.out.println(this.messages.pollFirst());
             }
         }
     }
