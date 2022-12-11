@@ -18,7 +18,7 @@ public class Messenger {
             String operation = in.nextLine();
             try {
                 numOperation = Integer.parseInt(operation);
-                if (numOperation > 0 && numOperation <= 4) correctInput = true;
+                if (numOperation > 0 && numOperation <= 5) correctInput = true;
             } catch (NumberFormatException e) {
             } finally {
                 if (!correctInput) System.out.println("Некорректный ввод. Повторите попытку.");
@@ -59,6 +59,13 @@ public class Messenger {
         if (!userExists) System.out.println("Нет такого пользователя.");
     }
 
+    public static void printUsers() {
+        System.out.println("Список существующих пользователей:");
+        for (User user : users) {
+            System.out.println(user.getUserName());
+        }
+    }
+
     public static void programMenu() {
 
         boolean isFinished = false;
@@ -67,7 +74,8 @@ public class Messenger {
             System.out.println("Введите 1, чтобы добавить пользователя.");
             System.out.println("Введите 2, чтобы написать сообщения пользователю.");
             System.out.println("Введите 3, чтобы прочитать сообщения пользователя.");
-            System.out.println("Введите 4, чтобы закончить программу.");
+            System.out.println("Введите 4, чтобы посмотреть список существующих пользователей.");
+            System.out.println("Введите 5, чтобы закончить программу.");
             int operation = inputOperation();
             switch (operation) {
                 case 1: {
@@ -85,7 +93,12 @@ public class Messenger {
                     break;
                 }
                 case 4: {
+                    printUsers();
+                    break;
+                }
+                case 5: {
                     isFinished = true;
+                    System.out.println("Программа завершена.");
                     break;
                 }
             }
