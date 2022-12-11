@@ -6,38 +6,39 @@ import java.util.Scanner;
 public class Messenger {
     private static ArrayList<User> users = new ArrayList<User>();
     private static Scanner in = new Scanner(System.in);
-
+    private static final int ADD_OPERATION = 1;
+    private static final int WRITE_OPERATION = 2;
+    private static final int READ_OPERATION = 3;
+    private static final int PRINT_OPERATION = 4;
+    private static final int END_OPERATION = 5;
     public static void main(String[] args) {
         programMenu();
     }
 
     public static int inputOperation() {
-        boolean correctInput = false;
-        int numOperation = 0;
-        do {
+        int numOperation;
+        while(true){
             String operation = in.nextLine();
             try {
                 numOperation = Integer.parseInt(operation);
-                if (numOperation > 0 && numOperation <= 5) correctInput = true;
+                if (numOperation > 0 && numOperation <= 5) break;
+                System.out.println("Некорректный ввод. Повторите попытку.");
             } catch (NumberFormatException e) {
-            } finally {
-                if (!correctInput) System.out.println("Некорректный ввод. Повторите попытку.");
+                System.out.println("Некорректный ввод. Повторите попытку.");
             }
-        } while (!correctInput);
+        }
         return numOperation;
     }
 
     public static void addUser() {
         System.out.println("Введите имя нового пользователя:");
         String userName = in.nextLine();
-        for (User user : users) {
-            if (user.getUserName().equals(userName)) {
-                System.out.println("Уже есть такой пользователь.");
-                return;
-            }
+        User newUser = new User(userName);
+        if (users.contains(newUser)) System.out.println("Уже есть такой пользователь.");
+        else{
+            users.add(newUser);
+            System.out.println("Пользователь добавлен.");
         }
-        users.add(new User(userName));
-        System.out.println("Пользователь добавлен.");
     }
 
     public static void readWriteMessages(int neededOperation) {
@@ -45,18 +46,13 @@ public class Messenger {
             System.out.println("Введите имя пользователя, которому хотите написать:");
         else System.out.println("Введите имя пользователя, сообщения которого хотите прочитать:");
         String userName = in.nextLine();
-        boolean userExists = false;
-        for (int i = 0; i < users.size(); i++) {
-            if (users.get(i).getUserName().equals(userName)) {
-                userExists = true;
-                if (neededOperation == 1) {
-                    System.out.println("Введите сообщение, которое хотите написать:");
-                    users.get(i).writeMessages(in.nextLine());
-                } else users.get(i).readMessages();
-                break;
-            }
+        User existsUser = new User(userName);
+        if (users.contains(existsUser)) {
+            if (neededOperation == 1) {
+                System.out.println("Введите сообщение, которое хотите написать:");
+                users.get(users.indexOf(existsUser)).writeMessages(in.nextLine());
+            } else users.get(users.indexOf(existsUser)).readMessages();
         }
-        if (!userExists) System.out.println("Нет такого пользователя.");
     }
 
     public static void printUsers() {
@@ -67,41 +63,41 @@ public class Messenger {
     }
 
     public static void programMenu() {
-
-        boolean isFinished = false;
-        do {
-            System.out.println();
-            System.out.println("Введите 1, чтобы добавить пользователя.");
-            System.out.println("Введите 2, чтобы написать сообщения пользователю.");
-            System.out.println("Введите 3, чтобы прочитать сообщения пользователя.");
-            System.out.println("Введите 4, чтобы посмотреть список существующих пользователей.");
-            System.out.println("Введите 5, чтобы закончить программу.");
-            int operation = inputOperation();
-            switch (operation) {
-                case 1: {
-                    addUser();
-                    break;
-                }
-                case 2: {
-                    if (!users.isEmpty()) readWriteMessages(1);
-                    else System.out.println("Сначала добавьте пользователей.");
-                    break;
-                }
-                case 3: {
-                    if (!users.isEmpty()) readWriteMessages(2);
-                    else System.out.println("Сначала добавьте пользователей.");
-                    break;
-                }
-                case 4: {
-                    printUsers();
-                    break;
-                }
-                case 5: {
-                    isFinished = true;
-                    System.out.println("Программа завершена.");
-                    break;
+        menu:
+        {
+            while (true) {
+                System.out.println();
+                System.out.println("Введите 1, чтобы добавить пользователя.");
+                System.out.println("Введите 2, чтобы написать сообщения пользователю.");
+                System.out.println("Введите 3, чтобы прочитать сообщения пользователя.");
+                System.out.println("Введите 4, чтобы посмотреть список существующих пользователей.");
+                System.out.println("Введите 5, чтобы закончить программу.");
+                int operation = inputOperation();
+                switch (operation) {
+                    case ADD_OPERATION: {
+                        addUser();
+                        break;
+                    }
+                    case WRITE_OPERATION: {
+                        if (!users.isEmpty()) readWriteMessages(1);
+                        else System.out.println("Сначала добавьте пользователей.");
+                        break;
+                    }
+                    case READ_OPERATION: {
+                        if (!users.isEmpty()) readWriteMessages(2);
+                        else System.out.println("Сначала добавьте пользователей.");
+                        break;
+                    }
+                    case PRINT_OPERATION: {
+                        printUsers();
+                        break;
+                    }
+                    case END_OPERATION: {
+                        System.out.println("Программа завершена.");
+                        break menu;
+                    }
                 }
             }
-        } while (!isFinished);
+        }
     }
 }

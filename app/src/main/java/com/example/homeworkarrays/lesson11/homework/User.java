@@ -1,9 +1,10 @@
 package com.example.homeworkarrays.lesson11.homework;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Queue;
 
-public class User {
+public class User extends ArrayList {
     private String userName;
     private ArrayDeque<String> messages = new ArrayDeque<String>();
 
@@ -31,5 +32,12 @@ public class User {
                 System.out.println(this.messages.pollFirst());
             }
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        o = (User) o;
+        if (this.getUserName().equals(((User) o).getUserName())) return true;
+        return false;
     }
 }
