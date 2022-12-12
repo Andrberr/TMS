@@ -1,10 +1,9 @@
 package com.example.homeworkarrays.lesson11.homework;
 
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Queue;
 
-public class User extends ArrayList {
+public class User {
     private String userName;
     private ArrayDeque<String> messages = new ArrayDeque<String>();
 
