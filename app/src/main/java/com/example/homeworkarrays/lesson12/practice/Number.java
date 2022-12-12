@@ -11,10 +11,10 @@ public class Number {
     }
 
     public static void DeleteRepeatElements() {
-        System.out.print("Введите число: ");
         Scanner in = new Scanner(System.in);
         HashSet<Integer> nums = new HashSet<>();
         while (true) {
+            System.out.print("Введите число: ");
             String number = in.nextLine();
             if (number.equals("!")) break;
             else if (number.matches(REGEXP)) nums.add(Integer.parseInt(number));
