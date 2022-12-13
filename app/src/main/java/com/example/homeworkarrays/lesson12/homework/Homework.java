@@ -1,7 +1,6 @@
 package com.example.homeworkarrays.lesson12.homework;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Homework {
@@ -56,8 +55,8 @@ public class Homework {
     }
 
     private static void printAnimalsInfo() {
-        for (Map.Entry<String, Pet> animal : animals.entrySet()) {
-            animal.getValue().printInfo();
+        for (Pet pet : animals.values()) {
+            pet.printInfo();
         }
     }
 
@@ -71,6 +70,4 @@ public class Homework {
             } else System.out.println("Некорректный ввод. Повторите операцию.");
         }
     }
-
-
 }
