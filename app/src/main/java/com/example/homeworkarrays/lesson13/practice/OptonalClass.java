@@ -1,4 +1,4 @@
-package com.example.homeworkarrays.lesson13;
+package com.example.homeworkarrays.lesson13.practice;
 
 import java.util.InputMismatchException;
 import java.util.Optional;
