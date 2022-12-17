@@ -11,12 +11,7 @@ public class StreamWork {
 
     public static void main(String[] args) {
         initialize();
-        deleteRepeatedElements();
-        evenNumbersInRange();
-        multiplyNumbers();
-        removeNumbers();
-        printStreamAmount();
-        findAverageNumber();
+        operateWithNumbers();
     }
 
     public static void initialize() {
@@ -27,39 +22,23 @@ public class StreamWork {
         System.out.println(numbers.toString());
     }
 
-    public static void deleteRepeatedElements() {
+    public static void operateWithNumbers() {
+        System.out.println("All even numbers from 7 to 17:");
         numbers = numbers.stream()
                 .distinct()
-                .collect(Collectors.toList());
-        System.out.println("Without duplicates: " + numbers);
-    }
-
-    public static void evenNumbersInRange() {
-        numbers = numbers.stream()
-                .filter(num -> num % 2 == 0 && num >= 7 && num <= 17)
-                .collect(Collectors.toList());
-        System.out.println("All even numbers from 7 to 17: " + numbers);
-    }
-
-    public static void multiplyNumbers() {
-        numbers = numbers.stream()
+                .filter(num -> {
+                    if (num % 2 == 0 && num >= 7 && num <= 17) {
+                        System.out.print(num + " ");
+                    }
+                    return true;
+                })
                 .map(num -> num * 2)
-                .collect(Collectors.toList());
-        System.out.println("Multiplied numbers: " + numbers);
-    }
-
-    public static void removeNumbers() {
-        numbers = numbers.stream()
                 .filter(num -> num > 10)
                 .collect(Collectors.toList());
-        System.out.println("All numbers that are > 10: " + numbers);
-    }
-
-    public static void printStreamAmount() {
-        System.out.println("Amount of elements int stream = " + numbers.stream().count());
-    }
-
-    public static void findAverageNumber() {
+        System.out.println();
+        System.out.println("Double numbers that are > 10: ");
+        System.out.println(numbers.toString());
+        System.out.println("Amount of numbers = " + numbers.stream().count());
         Optional<Integer> averageNumber = numbers.stream()
                 .reduce((x, y) -> x + y);
         int result = averageNumber.get() / numbers.size();
