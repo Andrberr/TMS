@@ -25,11 +25,10 @@ public class StreamWork {
         System.out.println("All even numbers from 7 to 17:");
         numbers = numbers.stream()
                 .distinct()
-                .filter(num -> {
+                .peek(num -> {
                     if (num % 2 == 0 && num >= 7 && num <= 17) {
                         System.out.print(num + " ");
                     }
-                    return true;
                 })
                 .map(num -> num * 2)
                 .filter(num -> num > 10)
