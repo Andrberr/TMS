@@ -38,10 +38,8 @@ public class StreamWork {
         System.out.println();
         System.out.println("Double numbers that are > 10: ");
         System.out.println(numbers.toString());
-        System.out.println("Amount of numbers = " + numbers.stream().count());
-        Optional<Integer> averageNumber = numbers.stream()
-                .reduce((x, y) -> x + y);
-        int result = averageNumber.get() / numbers.size();
-        System.out.println("Average value = " + result);
+        long count = numbers.stream().count();
+        System.out.println("Amount of numbers = " + count);
+        System.out.println("Average value = " + numbers.stream().reduce((x, y) -> x + y).get() / count);
     }
 }
