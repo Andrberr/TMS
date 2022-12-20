@@ -28,9 +28,8 @@ public class CallCenter {
             while (!calls.isEmpty()) {
                 synchronized (calls) {
                     if (calls.peek() != null) {
-                        calls.peek().printCallInfo();
+                        calls.poll().printCallInfo();
                         System.out.println(", Обработан работником " + Thread.currentThread().getName());
-                        calls.pop();
                         try {
                             Thread.sleep(1000);
                         } catch (InterruptedException e) {}
