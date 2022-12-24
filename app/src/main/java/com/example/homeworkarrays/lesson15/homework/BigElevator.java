@@ -1,23 +1,35 @@
 package com.example.homeworkarrays.lesson15.homework;
 
-public class BigElevator extends Elevator{
-    private final Elevators bigElevator;
+public class BigElevator extends Elevator {
 
-    public BigElevator(Elevators bigElevator) {
-        this.bigElevator = bigElevator;
+    public BigElevator(int peopleCount, int capacity) {
+        super(peopleCount, capacity);
     }
 
     @Override
     public void run() {
-        while (this.bigElevator.getPeopleAmount() > 0) {
-            try{
+        while (super.getPeopleCount() > 0) {
+            try {
                 Thread.sleep(2000);
-            }catch(InterruptedException e){}
-            this.bigElevator.addPeopleToBigElevator();
-            try{
+            } catch (InterruptedException e) {
+            }
+            addPeopleToBigElevator(super.getPeopleCount());
+            try {
                 Thread.sleep(2000);
-            }catch(InterruptedException e){}
+            } catch (InterruptedException e) {
+            }
         }
-        System.out.println("Большой лифт поднял всего " + bigElevator.getPeopleAmountBig());
+        System.out.println("Большой лифт поднял всего " + addedPeopleAmount);
+    }
+
+    public synchronized void addPeopleToBigElevator(int peopleAmount) {
+        int currAmount = peopleAmount;
+        if (currAmount != 0) {
+            peopleAmount = (currAmount >= capacity) ? currAmount - capacity : 0;
+            super.setPeopleCount(peopleAmount);
+            int uppedPeople = currAmount - peopleAmount;
+            System.out.println("Большой лифт поднял " + uppedPeople);
+            addedPeopleAmount += uppedPeople;
+        }
     }
 }

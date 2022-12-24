@@ -6,6 +6,8 @@ import java.util.Scanner;
 public class MainClass {
     static Thread bigThread;
     static Thread fastThread;
+    private static final int BIG_ELEVATOR_CAPACITY = 10;
+    private static final int FAST_ELEVATOR_CAPACITY = 6;
 
     public static void main(String[] args) {
         menu();
@@ -14,26 +16,24 @@ public class MainClass {
     public static void menu() {
         int peopleAmount = inputAmountOfPeople();
         if (peopleAmount != 0) {
-            Elevators elevators = new Elevators(peopleAmount);
-            createElevators(elevators);
+            createElevators(peopleAmount);
             while (true) {
                 if (!bigThread.isAlive() && !fastThread.isAlive()) {
                     peopleAmount = inputAmountOfPeople();
                     if (peopleAmount == 0) break;
-                    elevators = new Elevators(peopleAmount);
-                    createElevators(elevators);
+                    createElevators(peopleAmount);
                 }
             }
         }
     }
 
-    public static void createElevators(Elevators elevators) {
-        BigElevator bigElevator = new BigElevator(elevators);
-        FastElevator fastElevator = new FastElevator(elevators);
+    public static void createElevators(int peopleAmount) {
+        BigElevator bigElevator = new BigElevator(peopleAmount, BIG_ELEVATOR_CAPACITY);
+        FastElevator fastElevator = new FastElevator(peopleAmount, FAST_ELEVATOR_CAPACITY);
         bigThread = new Thread(bigElevator);
         fastThread = new Thread(fastElevator);
-        bigThread.start();
         fastThread.start();
+        bigThread.start();
     }
 
     public static int inputAmountOfPeople() {
