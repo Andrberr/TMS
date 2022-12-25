@@ -1,9 +1,10 @@
 package com.example.homeworkarrays.lesson15.homework;
 
 public class FastElevator extends Elevator {
+    private static final int FAST_ELEVATOR_CAPACITY = 6;
 
-    public FastElevator(int peopleCount, int capacity) {
-        super(peopleCount, capacity);
+    public FastElevator(int peopleCount) {
+        super(peopleCount);
     }
 
     @Override
@@ -25,7 +26,7 @@ public class FastElevator extends Elevator {
     public synchronized void addPeopleToFastElevator(int peopleAmount) {
         int currAmount = peopleAmount;
         if (currAmount != 0) {
-            peopleAmount = (currAmount >= capacity) ? currAmount - capacity : 0;
+            peopleAmount = (currAmount >= FAST_ELEVATOR_CAPACITY) ? currAmount - FAST_ELEVATOR_CAPACITY : 0;
             super.setPeopleCount(peopleAmount);
             int uppedPeople = currAmount - peopleAmount;
             System.out.println("Скоростной лифт поднял " + uppedPeople);

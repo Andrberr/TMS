@@ -1,9 +1,10 @@
 package com.example.homeworkarrays.lesson15.homework;
 
 public class BigElevator extends Elevator {
+    private static final int BIG_ELEVATOR_CAPACITY = 10;
 
-    public BigElevator(int peopleCount, int capacity) {
-        super(peopleCount, capacity);
+    public BigElevator(int peopleCount) {
+        super(peopleCount);
     }
 
     @Override
@@ -25,7 +26,7 @@ public class BigElevator extends Elevator {
     public synchronized void addPeopleToBigElevator(int peopleAmount) {
         int currAmount = peopleAmount;
         if (currAmount != 0) {
-            peopleAmount = (currAmount >= capacity) ? currAmount - capacity : 0;
+            peopleAmount = (currAmount >= BIG_ELEVATOR_CAPACITY) ? currAmount - BIG_ELEVATOR_CAPACITY : 0;
             super.setPeopleCount(peopleAmount);
             int uppedPeople = currAmount - peopleAmount;
             System.out.println("Большой лифт поднял " + uppedPeople);

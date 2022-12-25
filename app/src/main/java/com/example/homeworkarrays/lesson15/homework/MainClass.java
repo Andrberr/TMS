@@ -4,36 +4,34 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MainClass {
-    static Thread bigThread;
-    static Thread fastThread;
-    private static final int BIG_ELEVATOR_CAPACITY = 10;
-    private static final int FAST_ELEVATOR_CAPACITY = 6;
 
     public static void main(String[] args) {
-        menu();
+        createElevators();
     }
 
-    public static void menu() {
+    public static void createElevators() {
         int peopleAmount = inputAmountOfPeople();
         if (peopleAmount != 0) {
-            createElevators(peopleAmount);
+            Thread[] threads = startElevators(peopleAmount);
             while (true) {
-                if (!bigThread.isAlive() && !fastThread.isAlive()) {
+                if (!threads[0].isAlive() && !threads[1].isAlive()) {
                     peopleAmount = inputAmountOfPeople();
                     if (peopleAmount == 0) break;
-                    createElevators(peopleAmount);
+                    threads = startElevators(peopleAmount);
                 }
             }
         }
     }
 
-    public static void createElevators(int peopleAmount) {
-        BigElevator bigElevator = new BigElevator(peopleAmount, BIG_ELEVATOR_CAPACITY);
-        FastElevator fastElevator = new FastElevator(peopleAmount, FAST_ELEVATOR_CAPACITY);
-        bigThread = new Thread(bigElevator);
-        fastThread = new Thread(fastElevator);
-        fastThread.start();
-        bigThread.start();
+    public static Thread[] startElevators(int peopleAmount) {
+        BigElevator bigElevator = new BigElevator(peopleAmount);
+        FastElevator fastElevator = new FastElevator(peopleAmount);
+        Thread[] threads = new Thread[2];
+        threads[0] = new Thread(bigElevator);
+        threads[1] = new Thread(fastElevator);
+        threads[0].start();
+        threads[1].start();
+        return threads;
     }
 
     public static int inputAmountOfPeople() {
